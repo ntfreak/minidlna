@@ -36,6 +36,8 @@
 #include "sql.h"
 #include "log.h"
 
+#include <linux/limits.h>
+
 int
 insert_playlist(const char * path, char * name)
 {
