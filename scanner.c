@@ -598,7 +598,14 @@ sql_failed:
 static inline int
 filter_hidden(scan_filter *d)
 {
+#if 1
+	/* default is no hidden directories */
 	return (d->d_name[0] != '.');
+#else
+	/* allow hidden directories */
+	return !((strcmp(d->d_name, ".") == 0) ||
+			(strcmp(d->d_name, "..") == 0));
+#endif
 }
 
 static int
