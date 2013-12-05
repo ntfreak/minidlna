@@ -846,7 +846,7 @@ callback(void *args, int argc, char **argv, char **azColName)
 		                   "&lt;upnp:class&gt;object.%s&lt;/upnp:class&gt;",
 		                   title, class);
 		if( comment && (passed_args->filter & FILTER_DC_DESCRIPTION) ) {
-			ret = strcatf(str, "&lt;dc:description&gt;%.384s&lt;/dc:description&gt;", comment);
+			ret = strcatf(str, "&lt;dc:description&gt;%s&lt;/dc:description&gt;", comment);
 		}
 		if( creator && (passed_args->filter & FILTER_DC_CREATOR) ) {
 			ret = strcatf(str, "&lt;dc:creator&gt;%s&lt;/dc:creator&gt;", creator);
