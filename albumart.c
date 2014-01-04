@@ -292,7 +292,7 @@ check_for_album_file(const char *path)
 		p = strrchr(file, '.');
 		if( p )
 		{
-			strcpy(p, ".jpg");
+			strcpy(p, ".tbn");
 			ret = access(file, R_OK);
 		}
 		if( ret != 0 )
