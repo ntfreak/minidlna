@@ -64,6 +64,7 @@ testupnpdescgen_LDADD = \
 SUFFIXES = .tmpl .
 
 .tmpl:
+	@$(MKDIR_P) $(top_builddir)/linux
 	sed -e s@:SBINDIR:@${sbindir}@ <$< >$@
 
 GENERATED_FILES = \

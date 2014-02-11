@@ -14,6 +14,7 @@
 # License along with MiniDLNA; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
 # USA.
+AC_PREREQ(2.60)
 AC_INIT(MiniDLNA,1.1.3,,minidlna)
 #LT_INIT
 
@@ -37,6 +38,7 @@ AM_PROG_CC_C_O
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
+AC_PROG_MKDIR_P
 
 # Default string definitions
 AC_DEFINE_UNQUOTED([OS_URL],"http://sourceforge.net/projects/minidlna/",[OS URL])
