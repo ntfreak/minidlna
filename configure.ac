@@ -68,7 +68,15 @@ AC_C_BIGENDIAN
 # Checks for library functions.
 AC_FUNC_FORK
 AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK
-AC_CHECK_FUNCS([gethostname getifaddrs gettimeofday inet_ntoa memmove memset mkdir realpath select sendfile setlocale socket strcasecmp strchr strdup strerror strncasecmp strpbrk strrchr strstr strtol strtoul])
+AC_CHECK_FUNCS([gethostname getifaddrs gettimeofday inet_ntoa memmove memset mkdir realpath select setlocale socket strcasecmp strchr strdup strerror strncasecmp strpbrk strrchr strstr strtol strtoul])
+
+AC_MSG_CHECKING([whether to enable terastation hacks])
+AC_ARG_ENABLE([terastation-hacks],
+  AS_HELP_STRING([--enable-terastation-hacks], [Enable terastation hacks]),
+  [enable_terastation_hacks=$enableval], [enable_terastation_hacks=no])
+AC_MSG_RESULT([$enable_terastation_hacks])
+
+if test $enable_terastation_hacks = no; then
 
 #
 # Check for struct ip_mreqn
@@ -97,6 +105,8 @@ AC_TRY_COMPILE([#include <netinet/in.h>], [
         AC_MSG_ERROR([No multicast support])
     ])
 ])
+
+fi
 
 ################################################################################################################
 # Special include directories
@@ -302,6 +312,10 @@ AC_COMPILE_IFELSE(
          AC_MSG_RESULT([yes])
      ])
 
+if test $enable_terastation_hacks = no; then
+
+AC_CHECK_FUNCS([sendfile])
+
 AC_MSG_CHECKING([for linux sendfile support])
 AC_COMPILE_IFELSE(
      [AC_LANG_PROGRAM(
@@ -382,6 +396,8 @@ AC_COMPILE_IFELSE(
      [
          AC_MSG_RESULT([no])
      ])
+fi
+
 CFLAGS="$CFLAGS_SAVE"
 
 LDFLAGS_SAVE="$LDFLAGS"
